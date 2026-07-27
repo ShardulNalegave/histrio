@@ -34,6 +34,15 @@ typedef struct coroutine {
     void (*entry)(void *arg);
 } coroutine_t;
 
-void coroutine_make(coroutine_t *co);
+coroutine_t* coroutine_create(
+    void *stack,
+    size_t stack_size,
+    void (*entry)(void *arg),
+    void *arg,
+    void (*cleanup)(void *stack, size_t stack_size)
+);
+
+void coroutine_yield(void);
+bool coroutine_resume(coroutine_t *co);
 
 #endif // HISTRIO_COROUTINES_H
