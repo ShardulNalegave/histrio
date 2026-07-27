@@ -1,7 +1,0 @@
-
-#ifndef HISTRIO_COROUTINES_H
-#define HISTRIO_COROUTINES_H
-
-// ...
-
-#endif // HISTRIO_COROUTINES_H

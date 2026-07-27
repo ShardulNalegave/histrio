@@ -1,13 +1,13 @@
 
 .text
-.global histrio_coroutine_context_switch
-.type histrio_coroutine_context_switch, @function
+.global coroutine_context_switch
+.type coroutine_context_switch, @function
 
-histrio_coroutine_context_switch:
+coroutine_context_switch:
 
     # Save the current CPU state into `from`
 
-    leaq  resume_here(%rip), %rax   # rax = address of 'resume_here' label
+    leaq  resume_point(%rip), %rax   # rax = address of 'resume_point' label
     movq  %rax,   0(%rdi)           # from->rip = address of resume point
 
     movq  %rsp,   8(%rdi)           # from->rsp = current stack pointer
@@ -36,4 +36,4 @@ histrio_coroutine_context_switch:
 resume_point:
     ret
 
-.size histrio_coroutine_context_switch, .-histrio_coroutine_context_switch
+.size coroutine_context_switch, .-coroutine_context_switch
