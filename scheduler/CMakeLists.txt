@@ -5,6 +5,7 @@ set(HISTRIO_SCHEDULER_SOURCES
     src/scheduler.c)
 
 add_library(histrio_scheduler ${HISTRIO_SCHEDULER_SOURCES})
+target_link_libraries(histrio_coroutine PRIVATE histrio_common)
 target_link_libraries(histrio_scheduler PRIVATE histrio_coroutine)
 
 target_include_directories(

@@ -4,6 +4,8 @@
 
 #include "stddef.h"
 
+#include "histrio/status.h"
+
 typedef enum coroutine_state {
     COROUTINE_READY,
     COROUTINE_RUNNING,
@@ -34,15 +36,12 @@ typedef struct coroutine {
     void (*entry)(void *arg);
 } coroutine_t;
 
-coroutine_t* coroutine_create(
-    void *stack,
-    size_t stack_size,
-    void (*entry)(void *arg),
-    void *arg,
-    void (*cleanup)(void *stack, size_t stack_size)
-);
+[[nodiscard]]
+histrio_result_t coroutine_create(coroutine_t* co);
 
 void coroutine_yield(void);
-bool coroutine_resume(coroutine_t *co);
+histrio_status_t coroutine_resume(coroutine_t *co);
+
+void coroutine_stack_free(coroutine_t *co);
 
 #endif // HISTRIO_COROUTINES_H

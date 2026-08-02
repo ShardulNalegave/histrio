@@ -5,6 +5,7 @@ set(HISTRIO_MAILBOX_SOURCES
     src/mailbox.c)
 
 add_library(histrio_mailbox ${HISTRIO_MAILBOX_SOURCES})
+target_link_libraries(histrio_coroutine PRIVATE histrio_common)
 
 target_include_directories(
     histrio_mailbox
